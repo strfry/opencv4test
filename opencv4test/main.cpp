@@ -21,20 +21,24 @@ int main()
 
 
       int xx=0,yy=0;
+
     while (bool running = true) {
         xx=(xx+33) % 128;
         yy=(yy+33) % 128;
         for(int x=0;x<=127;x++){
             for(int y=0;y<=127;y++){
                 image2.at<cv::Vec3b>(x, y) = image.at<cv::Vec3b>(x + xx, y);
-                usleep(1000);
             }
         }
         imshow( "Display window", image2 );                // Show our image inside it.
-                
+    
+        std::cout << "frame" << std::endl;
+    
+        auto key = waitKey(25);
+        if (key != 255) running = false;
+
+
     }
     
-        std::cout << waitKey(33) << std::endl;
-
     return 0; // Wait for a keystroke in the window
 }
